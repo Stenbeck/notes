@@ -1,7 +1,7 @@
 import { descendants } from '../../shared/utils/structure.js'
 
 export const useNodeActions = () => {
-	const { state, operation, select, openDocument, effectiveShare } = useNotes()
+	const { state, operation, select, openDocument, effectiveShare, request } = useNotes()
 	const { ask } = useConfirmation()
 	const { t } = useI18n()
 	const assertCurrent = (revision) => {
@@ -38,5 +38,9 @@ export const useNodeActions = () => {
 		select('trash')
 		return true
 	}
-	return { nodeAction, emptyTrash }
+	const cleanTrash = async () => {
+		if (!await ask(t('confirmCleanTrash'), { title: t('cleanTrash'), label: t('cleanTrash'), danger: true })) return null
+		return request('trash/cleanup', { method: 'POST', timeout: 60000 })
+	}
+	return { nodeAction, emptyTrash, cleanTrash }
 }

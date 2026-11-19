@@ -180,18 +180,25 @@
 							<AppIcon name="Plus" />
 							{{ t('newDocument') }}
 						</button>
-						<AppButton
-							v-if="state.view === 'trash'"
-							danger
-							:disabled="!list.length || processing"
-							@click="runAction(emptyTrash)">
-							<LucideTrash2 class="size-4" />
-							{{ t('emptyTrash') }}
-						</AppButton>
+						<div v-if="state.view === 'trash'" class="flex shrink-0 gap-1">
+							<AppButton compact :disabled="processing" @click="runAction(cleanTrash)">
+								{{ t('cleanTrash') }}
+							</AppButton>
+							<AppButton compact danger :disabled="!list.length || processing" @click="runAction(emptyTrash)">
+								<LucideTrash2 class="size-3.5" aria-hidden="true" />
+								{{ t('emptyTrash') }}
+							</AppButton>
+						</div>
 					</div>
 					<DocumentEditor ref="documentEditor" v-if="state.view === 'document' && selected" :key="selected.id" :id="selected.id" />
 					<FilesView v-else-if="state.view === 'files'" />
 					<div v-else class="p-5 sm:px-6">
+						<div v-if="state.view === 'trash'" role="status">
+							<p v-if="cleanupNotice" class="mb-3 text-sm"
+								:class="cleanupNotice.key === 'cleanTrashFailed' ? 'text-(--status-error)' : 'text-(--muted)'">
+								{{ t(cleanupNotice.key, cleanupNotice.values || {}) }}
+							</p>
+						</div>
 						<div v-if="['project', 'inbox', 'search'].includes(state.view)" class="mb-5 flex items-start gap-3">
 							<div class="min-w-0 flex-1">
 								<p v-if="state.view === 'inbox'" class="mt-2 text-(--muted)">{{ t('inboxHelp') }}</p>
@@ -266,7 +273,20 @@ const { beginNative: beginTreeDrag, cancel: cancelTreeDrag } = useTreeDrag()
 const { restore: restoreThemeSettings } = useThemeReload()
 const { t } = useI18n()
 const { openPanel } = useNotesPanel()
-const { nodeAction, emptyTrash } = useNodeActions()
+const { nodeAction, emptyTrash, cleanTrash: cleanOrphans } = useNodeActions()
+const cleanupNotice = ref(null)
+const cleanTrash = async () => {
+	cleanupNotice.value = null
+	try {
+		const counts = await cleanOrphans()
+		if (counts) cleanupNotice.value = {
+			key: counts.documents || counts.attachments ? 'cleanTrashResult' : 'cleanTrashEmpty',
+			values: counts
+		}
+	} catch {
+		cleanupNotice.value = { key: 'cleanTrashFailed' }
+	}
+}
 const processing = ref(false)
 const runAction = async (action) => {
 	if (processing.value) return

@@ -2,6 +2,8 @@
 
 **notes. is a self-hosted writing workspace for everything from quick notes to whole projects.** Your notes live on the hosting you choose.
 
+[Explore notes. on Stenbeck Lab](https://stenbecklab.com/notes)
+
 - **Give big ideas room to grow.** Organize your writing into projects and nested documents, with checklists, tables, images, and attachments.
 - **Pick up where you left off.** Install notes. as a progressive web app (PWA) on supported devices. Keep writing offline and let your changes sync across devices when you reconnect.
 - **Keep your workspace private.** Sign in with a passkey and share individual documents by link. Add a password to a shared link when you want to limit who can open it.

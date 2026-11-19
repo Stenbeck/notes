@@ -1,0 +1,57 @@
+{
+	"name": "notes",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"license": "MIT",
+	"author": "Fredrik Stenbeck",
+	"engines": {
+		"node": ">=24.7"
+	},
+	"scripts": {
+		"build": "nuxt build",
+		"postinstall": "nuxt prepare",
+		"setup": "node --env-file-if-exists=.env scripts/setup.js",
+		"db:check": "node --env-file-if-exists=.env scripts/check-db.js",
+		"migrate": "node --env-file-if-exists=.env scripts/migrate.js",
+		"mcp": "node --env-file-if-exists=.env scripts/mcp.js"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "3.1161.0",
+		"@better-auth/mongo-adapter": "1.7.14",
+		"@better-auth/passkey": "1.7.14",
+		"@modelcontextprotocol/server": "2.3.1",
+		"@nuxtjs/i18n": "10.6.0",
+		"@tailwindcss/vite": "4.1.18",
+		"@tiptap/core": "3.32.2",
+		"@tiptap/extension-collaboration": "3.32.2",
+		"@tiptap/extension-image": "3.32.2",
+		"@tiptap/extension-list": "3.32.2",
+		"@tiptap/extension-table": "3.32.2",
+		"@tiptap/html": "3.32.2",
+		"@tiptap/starter-kit": "3.32.2",
+		"@tiptap/vue-3": "3.32.2",
+		"@tiptap/y-tiptap": "3.0.7",
+		"better-auth": "1.7.14",
+		"fflate": "0.8.3",
+		"idb": "8.0.3",
+		"markdown-it": "14.3.3",
+		"mongodb": "7.7.0",
+		"mongoose": "9.11.4",
+		"nodemailer": "10.3.1",
+		"nuxt": "4.6.4",
+		"nuxt-lucide-icons": "2.1.0",
+		"sanitize-html": "2.18.1",
+		"tailwindcss": "4.1.18",
+		"turndown": "7.2.2",
+		"vue": "3.5.44",
+		"vue-router": "5.2.0",
+		"y-indexeddb": "9.0.12",
+		"yjs": "13.6.27",
+		"zod": "4.6.7"
+	},
+	"overrides": {
+		"glob": "14.0.3",
+		"minimatch": "11.0.4"
+	}
+}

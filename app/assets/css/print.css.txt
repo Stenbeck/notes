@@ -1,0 +1,50 @@
+@page {
+	margin: 20mm;
+}
+html {
+	color-scheme: light;
+	background: white;
+	color: #111;
+	font: 10pt/1.25 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+body { margin: 0; }
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.25;
+	break-after: avoid;
+	page-break-after: avoid;
+}
+h1 { font-size: 18pt; }
+h2 { font-size: 14pt; }
+h3 { font-size: 11pt; }
+h4, h5, h6 { font-size: 10pt; }
+.document-title { margin: 0 0 6mm; overflow-wrap: anywhere; }
+p { margin: 0 0 3mm; orphans: 3; widows: 3; white-space: break-spaces; tab-size: 6rem; }
+a { color: inherit; overflow-wrap: anywhere; }
+a[data-attachment] { display: block; margin-block: 3mm; text-decoration: none; }
+img {
+	display: block;
+	max-width: 100%;
+	max-height: calc(100vh - 40mm);
+	height: auto !important;
+	object-fit: contain;
+	break-inside: avoid;
+	page-break-inside: avoid;
+}
+img[data-align='center'] { margin-inline: auto; }
+img[data-align='right'] { margin-left: auto; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-block: 4mm; }
+thead { display: table-header-group; }
+tr { break-inside: avoid; page-break-inside: avoid; }
+th, td { border: 1px solid #aaa; padding: 2mm; vertical-align: top; overflow-wrap: anywhere; }
+table[data-borderless] > tbody > tr > :is(td, th) { border-color: transparent; }
+th p, td p { margin: 0; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; border: 1px solid #ccc; padding: 3mm; }
+blockquote { margin-inline: 0; padding-left: 4mm; border-left: 2px solid #aaa; }
+ul, ol { padding-left: 6mm; }
+li { margin-block: 1mm; }
+ul[data-type='taskList'] { padding: 0; list-style: none; }
+ul[data-type='taskList'] > li { display: flex; gap: 2mm; }
+ul[data-type='taskList'] > li > label { flex: none; }
+ul[data-type='taskList'] > li > div { flex: 1; min-width: 0; }
+input[type='checkbox'] { accent-color: #111; }
+[data-missing-file] { margin-block: 3mm; color: #444; }

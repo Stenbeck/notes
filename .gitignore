@@ -1,0 +1,15 @@
+node_modules/
+.nuxt/
+.output/
+.env
+.env.*
+!.env.example
+data/
+backups/
+coverage/
+playwright-report/
+test-results/
+work/
+.DS_Store
+*.pem
+*.key
